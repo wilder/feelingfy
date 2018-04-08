@@ -3,6 +3,7 @@ package wilderpereira.com.feelingfy.main
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 import wilderpereira.com.feelingfy.pojo.Picture
+import wilderpereira.com.feelingfy.pojo.PicturesList
 import java.io.File
 
 /**
@@ -12,6 +13,6 @@ import java.io.File
 data class PresentationItem(
         var title: String?,
         val quality: Float?,
-        val image: File?,
-        val picture: Picture?
+        var image: File?,
+        val picture: PicturesList?
 ) : Parcelable

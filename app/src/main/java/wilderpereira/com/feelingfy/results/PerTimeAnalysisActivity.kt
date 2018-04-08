@@ -1,39 +1,41 @@
 package wilderpereira.com.feelingfy.results
 
+import android.content.Intent
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import wilderpereira.com.feelingfy.R
-import com.github.mikephil.charting.components.YAxis
 import com.github.mikephil.charting.utils.ColorTemplate
-import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.components.Legend
 import com.github.mikephil.charting.components.Legend.LegendForm
-import android.graphics.Color.LTGRAY
-import com.github.mikephil.charting.charts.LineChart
-import com.github.mikephil.charting.charts.Chart
+import android.view.View
 import kotlinx.android.synthetic.main.activity_per_time_analysis.*
 import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.components.YAxis.AxisDependency
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
+import wilderpereira.com.feelingfy.main.MainActivity
+import wilderpereira.com.feelingfy.main.PresentationItem
 import wilderpereira.com.feelingfy.pojo.PicturesList
 import wilderpereira.com.feelingfy.utils.JsonImageSerializer
-
-
-
-
+import wilderpereira.com.feelingfy.utils.PictureUtils
 
 
 class PerTimeAnalysisActivity : AppCompatActivity() {
+
+    lateinit var presentantionItem: PresentationItem
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_per_time_analysis)
 
-//        val presententionItem = intent.extras.get("presentationItem")
-//        Log.d("presentationItem", presententionItem.toString())
+        if (intent.extras.containsKey("presentationItem")) {
+            presentantionItem = intent.extras.get("presentationItem") as PresentationItem
+        } else {
+            val picturesList = getPicturesList()
+            val averagePicture = PictureUtils.getMean(picturesList.pictures)
+            presentantionItem = PresentationItem("Presentation Test",  averagePicture!!.getQuality(), null, picturesList)
+        }
 
         setupChart()
     }
@@ -93,6 +95,12 @@ class PerTimeAnalysisActivity : AppCompatActivity() {
 
     }
 
+    fun next(view: View?) {
+        val intent = Intent(this@PerTimeAnalysisActivity, MainActivity::class.java)
+        intent.putExtra("newPresentation", presentantionItem)
+        startActivity(intent)
+    }
+
     fun setupChart() {
 
         lineChart.getDescription().setEnabled(false)
@@ -110,7 +118,7 @@ class PerTimeAnalysisActivity : AppCompatActivity() {
         lineChart.setBackgroundColor(Color.TRANSPARENT)
 
         // add data
-        setData(getPicturesList())
+        setData(presentantionItem.picture!!)
 
         lineChart.animateX(500)
 

@@ -18,25 +18,84 @@ import kotlinx.android.synthetic.main.activity_detailed.*
 import wilderpereira.com.feelingfy.R
 import wilderpereira.com.feelingfy.main.PresentationItem
 import wilderpereira.com.feelingfy.pojo.Picture
+import wilderpereira.com.feelingfy.pojo.PicturesList
+import wilderpereira.com.feelingfy.utils.JsonImageSerializer
+import wilderpereira.com.feelingfy.utils.PictureUtils
 
 
 class DetailedActivity : AppCompatActivity() {
 
     var averagePicture: Picture? = null
+    private lateinit var picturesList: PicturesList
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detailed)
 
-        averagePicture =
-                Picture(40.3f,
-                61.4f, 55.5f, 74.6f, 56.2f, 85.3f, 35.8f, 1000)
+        picturesList = getPicturesList()
+        averagePicture = PictureUtils.getMean(picturesList.pictures)
+
         setupGraph()
+    }
+
+    fun getPicturesList(): PicturesList {
+        val jsonInString = "[\n" +
+                "    {\n" +
+                "        \"Headwear\": 0.0,\n" +
+                "        \"Joy\": 0.73,\n" +
+                "        \"Sorrow\": 0.1,\n" +
+                "        \"Anger\": 0.1,\n" +
+                "        \"Surprised\": 0.3,\n" +
+                "        \"Exposed\": 0.1,\n" +
+                "        \"Blurred\": 0.13\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"Headwear\": 0.1,\n" +
+                "        \"Joy\": 0.7,\n" +
+                "        \"Sorrow\": 0.2,\n" +
+                "        \"Anger\": 0.17,\n" +
+                "        \"Surprised\": 0.5,\n" +
+                "        \"Exposed\": 0.0,\n" +
+                "        \"Blurred\": 0.17\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"Headwear\": 0.1,\n" +
+                "        \"Joy\": 0.63,\n" +
+                "        \"Sorrow\": 0.15,\n" +
+                "        \"Anger\": 0.2,\n" +
+                "        \"Surprised\": 0.52,\n" +
+                "        \"Exposed\": 0.02,\n" +
+                "        \"Blurred\": 0.2\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"Headwear\": 0.1,\n" +
+                "        \"Joy\": 0.7,\n" +
+                "        \"Sorrow\": 0.12,\n" +
+                "        \"Anger\": 0.2,\n" +
+                "        \"Surprised\": 0.5,\n" +
+                "        \"Exposed\": 0.1,\n" +
+                "        \"Blurred\": 0.17\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"Headwear\": 0.1,\n" +
+                "        \"Joy\": 0.77,\n" +
+                "        \"Sorrow\": 0.15,\n" +
+                "        \"Anger\": 0.2,\n" +
+                "        \"Surprised\": 0.7,\n" +
+                "        \"Exposed\": 0.4,\n" +
+                "        \"Blurred\": 0.14\n" +
+                "    }\n" +
+                "]"
+
+
+        val pictures = JsonImageSerializer.INSTANCE.getPictures(jsonInString)
+        return PicturesList(pictures)
+
     }
 
     fun nextClick(view: View?) {
         val intent = Intent(this@DetailedActivity, PerTimeAnalysisActivity::class.java)
-        val presentationItem = PresentationItem(presententionTitleEt.text.toString(),  averagePicture!!.getQuality(), null, averagePicture)
+        val presentationItem = PresentationItem(presententionTitleEt.text.toString(),  averagePicture!!.getQuality(), null, picturesList)
         intent.putExtra("presentationItem", presentationItem)
         startActivity(intent)
     }

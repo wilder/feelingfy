@@ -1,6 +1,7 @@
 package wilderpereira.com.feelingfy.main
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -40,6 +41,10 @@ class MainAdapter(var presentationItem: List<PresentationItem>) : RecyclerView.A
 
                 //itemView.ivPresentationMainImage.image
                 itemView.qualityPb.progress = presentationItem.quality!!.toInt() * 10
+
+                if (image != null && image!!.exists()) {
+                    itemView.ivPresentationMainImage.setImageURI(Uri.fromFile(image))
+                }
 
                 itemView.presentationItemContainer.setOnClickListener {
                     val intent = Intent(itemView.context, PerTimeAnalysisActivity::class.java)

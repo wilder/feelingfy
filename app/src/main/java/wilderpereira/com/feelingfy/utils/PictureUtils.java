@@ -22,7 +22,10 @@ public class PictureUtils {
             meanBlurred += picture.getBlurred();
         }
 
-        Picture meanPicture = new Picture(meanAnger,meanJoy,meanSorrow, meanAnger, meanSurprised, meanExposed, meanBlurred, null);
+
+        Picture meanPicture = new Picture(meanAnger * 25 ,meanJoy * 25 ,meanSorrow * 25 , meanAnger * 25  , meanSurprised * 25 , meanExposed * 25 , meanBlurred * 25 , null);
+
+
         return meanPicture;
     }
 

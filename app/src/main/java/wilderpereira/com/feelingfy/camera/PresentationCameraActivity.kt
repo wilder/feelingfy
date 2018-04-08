@@ -60,7 +60,8 @@ class PresentationCameraActivity : AppCompatActivity() {
                 PreferencesManager(baseContext).mainImagePath = pictureFile.absolutePath
                 fos.write(data)
                 fos.close()
-                camera.startPreview()
+                camera.release()
+                //camera.startPreview()
             } catch (e: FileNotFoundException) {
                 Log.d(TAG, "File not found: " + e.message)
             } catch (e: IOException) {
