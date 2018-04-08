@@ -110,7 +110,7 @@ class DetailedActivity : AppCompatActivity() {
                 Easing.EasingOption.EaseInOutQuad)
 
         val xAxis = radarChart.getXAxis()
-        xAxis.setTextSize(9f)
+        xAxis.setTextSize(14f)
         xAxis.setYOffset(0f)
         xAxis.setXOffset(0f)
         xAxis.valueFormatter = object : IAxisValueFormatter {
@@ -125,7 +125,7 @@ class DetailedActivity : AppCompatActivity() {
 
         val yAxis = radarChart.getYAxis()
         yAxis.setLabelCount(5, false)
-        yAxis.textSize = 9f
+        yAxis.textSize = 12f
         yAxis.axisMinimum = 0f
         yAxis.axisMaximum = 80f
         yAxis.setDrawLabels(false)

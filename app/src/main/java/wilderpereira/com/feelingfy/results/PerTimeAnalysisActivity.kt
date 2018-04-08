@@ -128,7 +128,7 @@ class PerTimeAnalysisActivity : AppCompatActivity() {
         // modify the legend ...
         l.setForm(LegendForm.LINE)
 //        l.setTypeface(mTfLight)
-        l.setTextSize(11f)
+        l.setTextSize(12f)
         l.setTextColor(Color.WHITE)
         l.setVerticalAlignment(Legend.LegendVerticalAlignment.BOTTOM)
         l.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT)
