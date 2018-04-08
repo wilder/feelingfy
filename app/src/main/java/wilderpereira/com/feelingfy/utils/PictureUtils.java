@@ -31,4 +31,19 @@ public class PictureUtils {
 
         return meanPicture;
     }
+
+    public static float getOverall(Picture picture){
+        float overall = 0;
+
+        overall += picture.getAnger();
+        overall += picture.getBlurred();
+        overall += picture.getExposed();
+        overall += picture.getSurprised();
+        overall += picture.getJoy();
+        overall += picture.getSorrow();
+
+        overall /= 6;
+
+        return overall;
+    }
 }
