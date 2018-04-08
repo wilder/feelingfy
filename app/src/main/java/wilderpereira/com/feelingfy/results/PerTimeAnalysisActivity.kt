@@ -136,7 +136,7 @@ class PerTimeAnalysisActivity : AppCompatActivity() {
 
         val leftAxis = lineChart.getAxisLeft()
         leftAxis.setTextColor(ColorTemplate.getHoloBlue())
-        leftAxis.setAxisMaximum(100f)
+        leftAxis.setAxisMaximum(80f)
         leftAxis.setAxisMinimum(0f)
         leftAxis.setDrawGridLines(true)
         leftAxis.setGranularityEnabled(true)
