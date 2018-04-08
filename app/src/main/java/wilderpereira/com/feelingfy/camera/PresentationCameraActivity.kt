@@ -6,6 +6,7 @@ import android.hardware.Camera.PictureCallback
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
+import android.os.Handler
 import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_IMAGE
 import android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO
 import android.support.v7.app.AppCompatActivity
@@ -22,6 +23,9 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
+import android.app.ProgressDialog
+
+
 
 
 class PresentationCameraActivity : AppCompatActivity() {
@@ -43,8 +47,20 @@ class PresentationCameraActivity : AppCompatActivity() {
 
     fun finalizePresentation(view: View?) {
         takePicture()
-        val intent = Intent(this@PresentationCameraActivity, JoyActivity::class.java)
-        startActivity(intent)
+
+        val dialog = ProgressDialog.show(this@PresentationCameraActivity, "",
+                "Processing images", true)
+
+        dialog.show()
+
+        val handler = Handler()
+        handler.postDelayed(Runnable {
+            dialog.dismiss()
+            val intent = Intent(this@PresentationCameraActivity, JoyActivity::class.java)
+            startActivity(intent)
+        }, 1000)
+
+
     }
 
     fun takePicture() : File? {
