@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_presentation_camera.*
 import wilderpereira.com.feelingfy.PreferencesManager
 import wilderpereira.com.feelingfy.R
 import wilderpereira.com.feelingfy.results.DetailedActivity
+import wilderpereira.com.feelingfy.results.JoyActivity
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -42,7 +43,7 @@ class PresentationCameraActivity : AppCompatActivity() {
 
     fun finalizePresentation(view: View?) {
         takePicture()
-        val intent = Intent(this@PresentationCameraActivity, DetailedActivity::class.java)
+        val intent = Intent(this@PresentationCameraActivity, JoyActivity::class.java)
         startActivity(intent)
     }
 
