@@ -18,6 +18,10 @@ import com.github.mikephil.charting.data.LineData
 import com.github.mikephil.charting.components.YAxis.AxisDependency
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
+import wilderpereira.com.feelingfy.pojo.PicturesList
+import wilderpereira.com.feelingfy.utils.JsonImageSerializer
+
+
 
 
 
@@ -32,6 +36,61 @@ class PerTimeAnalysisActivity : AppCompatActivity() {
 //        Log.d("presentationItem", presententionItem.toString())
 
         setupChart()
+    }
+
+    fun getPicturesList(): PicturesList {
+        val jsonInString = "[\n" +
+                "    {\n" +
+                "        \"Headwear\": 0.0,\n" +
+                "        \"Joy\": 0.73,\n" +
+                "        \"Sorrow\": 0.1,\n" +
+                "        \"Anger\": 0.1,\n" +
+                "        \"Surprised\": 0.3,\n" +
+                "        \"Exposed\": 0.1,\n" +
+                "        \"Blurred\": 0.13\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"Headwear\": 0.1,\n" +
+                "        \"Joy\": 0.7,\n" +
+                "        \"Sorrow\": 0.2,\n" +
+                "        \"Anger\": 0.17,\n" +
+                "        \"Surprised\": 0.5,\n" +
+                "        \"Exposed\": 0.0,\n" +
+                "        \"Blurred\": 0.17\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"Headwear\": 0.1,\n" +
+                "        \"Joy\": 0.63,\n" +
+                "        \"Sorrow\": 0.15,\n" +
+                "        \"Anger\": 0.2,\n" +
+                "        \"Surprised\": 0.52,\n" +
+                "        \"Exposed\": 0.02,\n" +
+                "        \"Blurred\": 0.2\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"Headwear\": 0.1,\n" +
+                "        \"Joy\": 0.7,\n" +
+                "        \"Sorrow\": 0.12,\n" +
+                "        \"Anger\": 0.2,\n" +
+                "        \"Surprised\": 0.5,\n" +
+                "        \"Exposed\": 0.1,\n" +
+                "        \"Blurred\": 0.17\n" +
+                "    },\n" +
+                "    {\n" +
+                "        \"Headwear\": 0.1,\n" +
+                "        \"Joy\": 0.77,\n" +
+                "        \"Sorrow\": 0.15,\n" +
+                "        \"Anger\": 0.2,\n" +
+                "        \"Surprised\": 0.7,\n" +
+                "        \"Exposed\": 0.4,\n" +
+                "        \"Blurred\": 0.14\n" +
+                "    }\n" +
+                "]"
+
+
+        val pictures = JsonImageSerializer.INSTANCE.getPictures(jsonInString)
+        return PicturesList(pictures)
+
     }
 
     fun setupChart() {
@@ -51,7 +110,7 @@ class PerTimeAnalysisActivity : AppCompatActivity() {
         lineChart.setBackgroundColor(Color.TRANSPARENT)
 
         // add data
-        setData()
+        setData(getPicturesList())
 
         lineChart.animateX(500)
 
@@ -90,7 +149,7 @@ class PerTimeAnalysisActivity : AppCompatActivity() {
         }
     }
 
-    fun setData() {
+    fun setData(picturesList: PicturesList) {
         //ArrayList<Entry> yVals1 = new ArrayList<Entry>();
 
         val yVals1 = ArrayList<Entry>()
@@ -100,12 +159,12 @@ class PerTimeAnalysisActivity : AppCompatActivity() {
         val yVals5 = ArrayList<Entry>()
         val yVals6 = ArrayList<Entry>()
 
-        setYValue(yVals1, arrayListOf(20f, 45f, 35f, 60f, 80f, 75f))
-        setYValue(yVals2, arrayListOf(40f, 15f, 15f, 34.5f, 40f, 45f))
-        setYValue(yVals3, arrayListOf(90f, 55f, 35f, 60.9f, 45f, 55f))
-        setYValue(yVals4, arrayListOf(60f, 35f, 55f, 67f, 20f, 45f))
-        setYValue(yVals5, arrayListOf(50f, 25f, 35f, 60f, 46f, 35f))
-        setYValue(yVals6, arrayListOf(40f, 35f, 55f, 50f, 50f, 25f))
+        setYValue(yVals1, picturesList.joyList)
+        setYValue(yVals2, picturesList.sorrowList)
+        setYValue(yVals3, picturesList.angerList)
+        setYValue(yVals4, picturesList.surprisedList)
+        setYValue(yVals5, picturesList.exposedList)
+        setYValue(yVals6, picturesList.blurredList)
 
 
         val set1: LineDataSet
@@ -134,8 +193,8 @@ class PerTimeAnalysisActivity : AppCompatActivity() {
             // create a dataset and give it a type
             set1 = LineDataSet(yVals1, "Joy")
 
-            set1.axisDependency = AxisDependency.LEFT
-            set1.color = ColorTemplate.getHoloBlue()
+            set1.axisDependency = AxisDependency.RIGHT
+            set1.color = Color.parseColor("#3AB795")
             set1.setCircleColor(Color.WHITE)
             set1.lineWidth = 2f
             set1.circleRadius = 3f
@@ -147,7 +206,7 @@ class PerTimeAnalysisActivity : AppCompatActivity() {
             // create a dataset and give it a type
             set2 = LineDataSet(yVals2, "Sorrow")
             set2.axisDependency = AxisDependency.RIGHT
-            set2.color = Color.RED
+            set2.color = Color.parseColor("#947EB0")
             set2.setCircleColor(Color.WHITE)
             set2.lineWidth = 2f
             set2.circleRadius = 3f
@@ -159,7 +218,7 @@ class PerTimeAnalysisActivity : AppCompatActivity() {
 
             set3 = LineDataSet(yVals3, "Anger")
             set3.axisDependency = AxisDependency.RIGHT
-            set3.color = Color.YELLOW
+            set3.color = Color.parseColor("#F25F5C")
             set3.setCircleColor(Color.WHITE)
             set3.lineWidth = 2f
             set3.circleRadius = 3f
@@ -170,7 +229,7 @@ class PerTimeAnalysisActivity : AppCompatActivity() {
 
             set4 = LineDataSet(yVals4, "Surprised")
             set4.axisDependency = AxisDependency.RIGHT
-            set4.color = Color.YELLOW
+            set4.color = Color.parseColor("#ECC8AF")
             set4.setCircleColor(Color.WHITE)
             set4.lineWidth = 2f
             set4.circleRadius = 3f
@@ -181,7 +240,7 @@ class PerTimeAnalysisActivity : AppCompatActivity() {
 
             set5 = LineDataSet(yVals5, "Exposed")
             set5.axisDependency = AxisDependency.RIGHT
-            set5.color = Color.YELLOW
+            set5.color = Color.parseColor("#3C91E6")
             set5.setCircleColor(Color.WHITE)
             set5.lineWidth = 2f
             set5.circleRadius = 3f
@@ -192,7 +251,7 @@ class PerTimeAnalysisActivity : AppCompatActivity() {
 
             set6 = LineDataSet(yVals6, "Blurred")
             set6.axisDependency = AxisDependency.RIGHT
-            set6.color = Color.YELLOW
+            set6.color = Color.parseColor("#FFE066")
             set6.setCircleColor(Color.WHITE)
             set6.lineWidth = 2f
             set6.circleRadius = 3f
