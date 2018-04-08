@@ -21,5 +21,6 @@ class Picture (
     @SerializedName("Blurred")
     var blurred: Float? , 
     @SerializedName("TimeStamp")
-    var timeStamp: Long?
+    var timeStamp: Long?,
+    var quality: Float?
 ) : Parcelable
