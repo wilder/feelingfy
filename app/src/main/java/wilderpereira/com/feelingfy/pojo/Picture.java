@@ -1,4 +1,5 @@
 package wilderpereira.com.feelingfy.pojo
+
 import com.google.gson.annotations.SerializedName;
 
 public class Picture {
@@ -16,6 +17,16 @@ public class Picture {
     float exposed;
     @SerializedName("Blurred")
     float blurred;
+    @SerializedName("TimeStamp")
+    long timeStamp;
+
+    public long getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(long timeStamp) {
+        this.timeStamp = timeStamp;
+    }
 
     public float getHeadwear() {
         return headwear;
@@ -75,7 +86,7 @@ public class Picture {
 
     @Override
     public String toString() {
-        return "picture{" +
+        return "Picture{" +
                 "headwear=" + headwear +
                 ", joy=" + joy +
                 ", sorrow=" + sorrow +
@@ -83,6 +94,7 @@ public class Picture {
                 ", surprised=" + surprised +
                 ", exposed=" + exposed +
                 ", blurred=" + blurred +
+                ", timeStamp=" + timeStamp +
                 '}';
     }
 }
