@@ -6,4 +6,24 @@
     android:layout_height="match_parent"
     tools:context="wilderpereira.com.feelingfy.camera.PresentationCameraActivity">
 
+    <FrameLayout
+        android:id="@+id/cameraPreview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000"
+        />
+
+    <Button
+        android:id="@+id/btnFinalize"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="Finalize"
+        android:onClick="finalizePresentation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
