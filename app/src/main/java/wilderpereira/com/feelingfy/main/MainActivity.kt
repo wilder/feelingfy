@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     private fun getPresentationItems(): List<PresentationItem> {
         val presentationItems = arrayListOf<PresentationItem>()
         for  (i in 1..5) {
-            val presentationItem = PresentationItem("Titulo $i", 2.0*i, null, null)
+            val presentationItem = PresentationItem("Titulo $i", 2.0f*i, null, null)
             presentationItems.add(presentationItem)
         }
         return presentationItems

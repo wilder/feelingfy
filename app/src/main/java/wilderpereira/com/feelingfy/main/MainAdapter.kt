@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.presentation_item.view.*
 import wilderpereira.com.feelingfy.R
-import wilderpereira.com.feelingfy.results.OverviewActivity
+import wilderpereira.com.feelingfy.results.PerTimeAnalysisActivity
 
 /**
  * Created by Wilder on 07/04/18.
@@ -42,7 +42,7 @@ class MainAdapter(var presentationItem: List<PresentationItem>) : RecyclerView.A
                 itemView.qualityPb.progress = presentationItem.quality!!.toInt() * 10
 
                 itemView.presentationItemContainer.setOnClickListener {
-                    val intent = Intent(itemView.context, OverviewActivity::class.java)
+                    val intent = Intent(itemView.context, PerTimeAnalysisActivity::class.java)
                     val bundle = Bundle()
                     bundle.putParcelable("presentationInfo", presentationItem)
                     intent.putExtras(bundle)

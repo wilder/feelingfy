@@ -21,6 +21,18 @@ class Picture (
     @SerializedName("Blurred")
     var blurred: Float? , 
     @SerializedName("TimeStamp")
-    var timeStamp: Long?,
-    var quality: Float?
-) : Parcelable
+    var timeStamp: Long?
+) : Parcelable {
+
+    fun getQuality(): Float?{
+        var overall = 0f
+        overall += anger!!
+        overall += blurred!!
+        overall += exposed!!
+        overall += surprised!!
+        overall += joy!!
+        overall += sorrow!!
+
+        return overall / 6f
+    }
+}

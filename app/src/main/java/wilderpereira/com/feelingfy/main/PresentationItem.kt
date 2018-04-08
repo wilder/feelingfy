@@ -11,7 +11,7 @@ import java.io.File
 @Parcelize
 data class PresentationItem(
         var title: String?,
-        val quality: Double?,
+        val quality: Float?,
         val image: File?,
         val picture: Picture?
 ) : Parcelable

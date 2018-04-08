@@ -1,8 +1,10 @@
 package wilderpereira.com.feelingfy.results
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.charts.RadarChart
 import com.github.mikephil.charting.components.AxisBase
@@ -13,8 +15,8 @@ import com.github.mikephil.charting.data.RadarEntry
 import com.github.mikephil.charting.formatter.IAxisValueFormatter
 import com.github.mikephil.charting.interfaces.datasets.IRadarDataSet
 import kotlinx.android.synthetic.main.activity_detailed.*
-import wilderpereira.com.feelingfy.PreferencesManager
 import wilderpereira.com.feelingfy.R
+import wilderpereira.com.feelingfy.main.PresentationItem
 import wilderpereira.com.feelingfy.pojo.Picture
 
 
@@ -30,6 +32,13 @@ class DetailedActivity : AppCompatActivity() {
                 Picture(40.3f,
                 61.4f, 55.5f, 74.6f, 56.2f, 85.3f, 35.8f, 1000)
         setupGraph()
+    }
+
+    fun nextClick(view: View?) {
+        val intent = Intent(this@DetailedActivity, PerTimeAnalysisActivity::class.java)
+        val presentationItem = PresentationItem(presententionTitleEt.text.toString(),  averagePicture!!.getQuality(), null, averagePicture)
+        intent.putExtra("presentationItem", presentationItem)
+        startActivity(intent)
     }
 
     fun setupGraph() {

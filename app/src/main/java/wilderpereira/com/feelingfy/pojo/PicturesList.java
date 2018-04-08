@@ -1,4 +1,4 @@
-package wilderpereira.com.feelingfy.pojo
+package wilderpereira.com.feelingfy.pojo;
 
 import java.util.ArrayList;
 import java.util.List;

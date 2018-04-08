@@ -1,7 +1,8 @@
-package wilderpereira.com.feelingfy.utils
-import com.mycompany.app.pojo.Picture;
+package wilderpereira.com.feelingfy.utils;
 
 import java.util.List;
+
+import wilderpereira.com.feelingfy.pojo.Picture;
 
 public class PictureUtils {
     public static Picture getMean(List<Picture> pictures){
@@ -21,29 +22,8 @@ public class PictureUtils {
             meanBlurred += picture.getBlurred();
         }
 
-        Picture meanPicture = new Picture();
-        meanPicture.setAnger(meanAnger);
-        meanPicture.setJoy(meanJoy);
-        meanPicture.setSorrow(meanSorrow);
-        meanPicture.setSurprised(meanSurprised);
-        meanPicture.setExposed(meanExposed);
-        meanPicture.setBlurred(meanBlurred);
-
+        Picture meanPicture = new Picture(meanAnger,meanJoy,meanSorrow, meanAnger, meanSurprised, meanExposed, meanBlurred, null);
         return meanPicture;
     }
 
-    public static float getOverall(Picture picture){
-        float overall = 0;
-
-        overall += picture.getAnger();
-        overall += picture.getBlurred();
-        overall += picture.getExposed();
-        overall += picture.getSurprised();
-        overall += picture.getJoy();
-        overall += picture.getSorrow();
-
-        overall /= 6;
-
-        return overall;
-    }
 }
