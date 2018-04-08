@@ -4,6 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#000"
     tools:context="wilderpereira.com.feelingfy.results.DetailedActivity">
+
+    <com.github.mikephil.charting.charts.RadarChart
+        android:id="@+id/radarChart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </android.support.constraint.ConstraintLayout>

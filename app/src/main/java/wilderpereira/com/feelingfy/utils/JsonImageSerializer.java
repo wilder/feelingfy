@@ -1,11 +1,11 @@
-package wilderpereira.com.feelingfy.utils
+package wilderpereira.com.feelingfy.utils;
 
 import com.google.gson.Gson;
-import com.mycompany.app.pojo.Picture;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import wilderpereira.com.feelingfy.pojo.Picture;
 
 public enum JsonImageSerializer {
 

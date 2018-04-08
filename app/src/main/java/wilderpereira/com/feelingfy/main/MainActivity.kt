@@ -27,14 +27,14 @@ class MainActivity : AppCompatActivity() {
 
         val sectionAdapter = MainAdapter(presentationItems)
 
-        presentationList.layoutManager = LinearLayoutManager(baseContext)
+        presentationList.layoutManager = LinearLayoutManager(baseContext) as RecyclerView.LayoutManager?
         presentationList.adapter = sectionAdapter
     }
 
     private fun getPresentationItems(): List<PresentationItem> {
         val presentationItems = arrayListOf<PresentationItem>()
         for  (i in 1..5) {
-            val presentationItem = PresentationItem("Titulo $i", 2.0*i)
+            val presentationItem = PresentationItem("Titulo $i", 2.0*i, null, null)
             presentationItems.add(presentationItem)
         }
         return presentationItems

@@ -1,5 +1,6 @@
 package wilderpereira.com.feelingfy.camera
 
+import android.content.Intent
 import android.hardware.Camera
 import android.hardware.Camera.PictureCallback
 import android.net.Uri
@@ -11,7 +12,9 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_presentation_camera.*
+import wilderpereira.com.feelingfy.PreferencesManager
 import wilderpereira.com.feelingfy.R
+import wilderpereira.com.feelingfy.results.DetailedActivity
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
@@ -38,6 +41,13 @@ class PresentationCameraActivity : AppCompatActivity() {
     }
 
     fun finalizePresentation(view: View?) {
+        takePicture()
+        val intent = Intent(this@PresentationCameraActivity, DetailedActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun takePicture() : File? {
+        var picture: File? = null
         mCamera?.takePicture(null, null, PictureCallback { data, camera ->
             val pictureFile = getOutputMediaFile(MEDIA_TYPE_IMAGE)
             if (pictureFile == null) {
@@ -47,14 +57,17 @@ class PresentationCameraActivity : AppCompatActivity() {
 
             try {
                 val fos = FileOutputStream(pictureFile)
+                PreferencesManager(baseContext).mainImagePath = pictureFile.absolutePath
                 fos.write(data)
                 fos.close()
+                camera.startPreview()
             } catch (e: FileNotFoundException) {
                 Log.d(TAG, "File not found: " + e.message)
             } catch (e: IOException) {
                 Log.d(TAG, "Error accessing file: " + e.message)
             }
         })
+        return picture
     }
 
     fun getCameraInstance(): Camera? {
