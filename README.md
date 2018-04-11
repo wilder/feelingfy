@@ -1,9 +1,9 @@
-# feelingfy
-Facbook Brazil Hack 2018 Second Place Project
+# Feelingfy
+Facebook Brazil Hack 2018 Second Place Project
 
 Feelingfy - Android app to measure audience feeling during presentations by using computer vision to understand their facial expressions.
 
-Built by: Filipe Filardi, Thiago Nobayashi and Wilder Roberto.
+Built by: [Filipe Filardi](https://github.com/filipefilardi), [Thiago Nobayashi](https://github.com/foo0x29a) and [Wilder Roberto](https://github.com/WilderPereira).
 
 ## Screenshots
 <a><img src="https://i.imgur.com/VbMkAbh.png" width="250"></a>
